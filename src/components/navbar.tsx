@@ -153,7 +153,7 @@ const Header = () => {
       <Container>
         <LogoWrapper menuState={menuState}>
           <Logo />
-        <Hamburguer onClick={() => setMenuState(!menuState)} iconName={menuState ? "menu_open" : "menu"}/>
+        <Hamburguer onClick={() => setMenuState(!menuState)} iconName={menuState ? "menu_open" : "menu"}/>
         </LogoWrapper>
         <ItemsWrapper menuState={menuState}>
           <Items>
