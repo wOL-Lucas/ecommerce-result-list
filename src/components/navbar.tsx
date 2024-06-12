@@ -1,10 +1,11 @@
 import React from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Logo from '@components/logo';
-const HeaderContainer = styled.header`
+
+const HeaderContainer = styled.header<{menuState: boolean}>`
   position: absolute;
   display: flex;
-  align-items: center;
   justify-content: center;
   width: 100%;
   height: 50px;
@@ -12,6 +13,11 @@ const HeaderContainer = styled.header`
   top: 0px;
   padding: 25px 0;
   background:#FFFFFF;
+
+  @media (max-width: 768px) {
+    height: ${props => props.menuState ? '190px' : '50px'};
+    transition: height 0.2s;
+  }
 `
 
 const Container = styled.div`
@@ -21,12 +27,18 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 768px) {
+    height: auto;
+    flex-direction: column;
+    align-items: start;
+    padding: 0;
+  }
 }
 `
 
 const Items = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   width: auto;
   padding: 0;
@@ -38,13 +50,17 @@ const Items = styled.div`
     color: #000000;
     margin: 0 10px;
     padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: start;
   }
 }
 `
 
 const Actions = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   width: auto;
   padding: 0;
@@ -57,68 +73,102 @@ const Actions = styled.div`
     margin: 0 10px;
     padding: 0;
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: start;
+
+    a {
+        font-size: 50px;
+      }
+  }
 }
 `
 
+const ItemsWrapper = styled.div<{ menuState: boolean }>`
+  display: flex;
+  justify-content: space-between;
+  width: 62%;
+
+  @media (max-width: 768px) {
+    padding-top: 15px;
+    width: 100%;
+    display: ${props => props.menuState ? 'flex' : 'none'};
+    justify-content: space-between;
+  }
+
+  a {
+    font-size: 20px;
+  }
+}`
+
+const HamburguerContainer = styled.div`
+  color: #000000;
+  display: none;
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+`
+
+const LogoWrapper = styled.div<{ menuState: boolean}>`
+  display: flex;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    border-bottom: ${props => props.menuState ? '1px solid #000000' : 'none'};
+  }
+`
+
+const Hamburguer = ({ onClick, iconName }: { onClick: ()=> void, iconName: string }) => {
+  return (
+    <HamburguerContainer onClick={onClick}>
+      <span className="material-symbols-outlined">{iconName}</span>
+    </HamburguerContainer>
+  )
+};
+
 const Header = () => {
   
+  const [menuState, setMenuState] = useState(false);
+
   const pages = [
-    {
-      name: 'Home',
-      url: '#'
-    },
-    {
-      name: "Shop",
-      url: '#'
-    },
-    {
-      name: 'About',
-      url: '#'
-    },
-    {
-      name: 'Contact',
-      url: '#'
-    }
-  ]
+    { name: 'Home', url: '#' },
+    { name: 'Shop', url: '#' },
+    { name: 'About', url: '#' },
+    { name: 'Contact', url: '#' }
+  ];
 
   const actions = [
-    {
-      name: "login",
-      url: "#",
-      icon: "person_alert"
-    },
-    {
-      name: "search",
-      url: "#",
-      icon: "search"
-    },
-    {
-      name: "wishlist",
-      url: "#",
-      icon: "favorite"
-    },
-    {
-      name: "cart",
-      url: "#",
-      icon: "shopping_cart"
-    }
-
-  ]
-
+    { name: 'login', url: '#', icon: 'person' },
+    { name: 'search', url: '#', icon: 'search' },
+    { name: 'wishlist', url: '#', icon: 'favorite' },
+    { name: 'cart', url: '#', icon: 'shopping_cart' }
+  ];
+  
   return (
-    <HeaderContainer>
+    <HeaderContainer menuState={menuState}>
       <Container>
-        <Logo />
-        <Items>
-          {pages.map((page, index) => (
-            <a key={index} href={page.url}>{page.name}</a>
-          ))}
-        </Items>
-        <Actions>
-          {actions.map((action, index) => (
-            <a key={index} href={action.url}><span className="material-symbols-outlined">{action.icon}</span></a>
-          ))}
-        </Actions>
+        <LogoWrapper menuState={menuState}>
+          <Logo />
+        <Hamburguer onClick={() => setMenuState(!menuState)} iconName={menuState ? "menu_open" : "menu"}/>
+        </LogoWrapper>
+        <ItemsWrapper menuState={menuState}>
+          <Items>
+            {pages.map((page, index) => (
+              <a key={index} href={page.url}>
+               {page.name}
+              </a>
+            ))}
+          </Items>
+          <Actions>
+            {actions.map((action, index) => (
+              <a key={index} href={action.url}><span className="material-symbols-outlined">{action.icon}</span></a>
+            ))}
+          </Actions>
+      </ItemsWrapper>
       </Container>
     </HeaderContainer>
   )
