@@ -1,7 +1,12 @@
 import Header from '@components/header';
+import Filters from '@components/filters';
+
 const Shop = () => {
   return (
-    <Header PageName={"Shop"} PreviousPage={"Home"}/>
+    <div>
+      <Header PageName={"Shop"} PreviousPage={"Home"}/>
+      <Filters/>
+    </div>
   );
 }
 
