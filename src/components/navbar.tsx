@@ -4,19 +4,16 @@ import styled from 'styled-components';
 import Logo from '@components/logo';
 
 const HeaderContainer = styled.header<{menuState: boolean}>`
-  position: absolute;
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 100vw;
   height: 50px;
-  left: 0px;
-  top: 0px;
   padding: 25px 0;
   background:#FFFFFF;
 
   @media (max-width: 768px) {
     height: ${props => props.menuState ? '190px' : '50px'};
-    transition: height 0.2s;
+    transition: height 0.05s ease-in-out;
   }
 `
 

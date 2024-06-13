@@ -27,7 +27,8 @@
       "@utils/*": ["src/utils/*"],
       "@types/*": ["src/types/*"],
       "@assets/*": ["src/assets/*"],
-      "@public/*": ["public/*"]
+      "@public/*": ["public/*"],
+      "@views/*": ["src/views/*"]
     }
   },
   "include": ["src"],
