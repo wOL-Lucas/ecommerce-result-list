@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import LogoImage from '@public/logo.png';
+import LogoImage from '/logo.png';
 
 
 

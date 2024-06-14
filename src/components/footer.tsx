@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Banner from '@components/banner';
-import Links from '@components/links';
+import Banner from '../components/banner';
+import Links from '../components/links';
 
 const Container = styled.div`
   display: flex;

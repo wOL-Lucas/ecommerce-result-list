@@ -1,6 +1,6 @@
-import Navbar from '@components/navbar';
+import Navbar from './components/navbar';
 import './App.css'
-import Shop from '@views/shop';
+import Shop from './views/shop';
 
 
 

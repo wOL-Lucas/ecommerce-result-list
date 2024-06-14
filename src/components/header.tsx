@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import HeaderBackground from '@assets/HeaderBackground.jpg';
+import HeaderBackground from '../assets/HeaderBackground.jpg';
 
 const Container = styled.div`
   width: 100%;

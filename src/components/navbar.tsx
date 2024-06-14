@@ -1,8 +1,7 @@
-import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import Logo from '@components/logo';
-import Links from '@components/links';
+import Logo from './logo';
+import Links from './links';
 
 const HeaderContainer = styled.header<{menuState: boolean}>`
   display: flex;
@@ -132,7 +131,7 @@ const Header = () => {
         <Hamburguer onClick={() => setMenuState(!menuState)} iconName={menuState ? "menu_open" : "menu"}/>
         </LogoWrapper>
         <ItemsWrapper menuState={menuState}>
-          <Links pages={pages} />
+          <Links pages={pages} column={false}/>
           <Actions>
             {actions.map((action, index) => (
               <a key={index} href={action.url}><span className="material-symbols-outlined">{action.icon}</span></a>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import ProductType from '@types/product';
-import Product from '@components/product';
+import ProductType from '../types/product';
+import Product from './product';
 
 const Container = styled.div`
   display: flex;
@@ -27,23 +27,15 @@ const Wrapper = styled.div`
 const Products = () => {
 
   const productList: ProductType[] = [
-    { name: "Syltherine", description: "Stylish cafe chair", image: "/src/assets/products/Syltherine.png", price: "2.500.000", hasDiscount: true, discount: "30%", originalPrice: "3.500.000", newProduct: false,},
-    { name: "Leviosa", description: "Stylish cafe chair", image: "/src/assets/products/Leviosa.png", price: "2.500.000", hasDiscount: false, discount: "", originalPrice: "",newProduct: false,},
-    { name: "Lolito", description: "Luxury big sofa", image: "/src/assets/products/Lolito.png", price: "7.000.000", hasDiscount: true, discount: "50%",originalPrice: "14.000.000",newProduct: false,},
-    { name: "Respira", description: "Outdoor bar table and stool", image: "/src/assets/products/Respira.png", price: "500.000", hasDiscount: false, discount: "", originalPrice: "", newProduct: true,},
-    { name: "Syltherine", description: "Stylish cafe chair", image: "/src/assets/products/Syltherine.png", price: "2.500.000", hasDiscount: true, discount: "30%", originalPrice: "3.500.000", newProduct: false,},
-    { name: "Leviosa", description: "Stylish cafe chair", image: "/src/assets/products/Leviosa.png", price: "2.500.000", hasDiscount: false, discount: "", originalPrice: "",newProduct: false,},
-    { name: "Lolito", description: "Luxury big sofa", image: "/src/assets/products/Lolito.png", price: "7.000.000", hasDiscount: true, discount: "50%",originalPrice: "14.000.000",newProduct: false,},
-    { name: "Respira", description: "Outdoor bar table and stool", image: "/src/assets/products/Respira.png", price: "500.000", hasDiscount: false, discount: "", originalPrice: "", newProduct: true,},
-    { name: "Syltherine", description: "Stylish cafe chair", image: "/src/assets/products/Syltherine.png", price: "2.500.000", hasDiscount: true, discount: "30%", originalPrice: "3.500.000", newProduct: false,},
-    { name: "Leviosa", description: "Stylish cafe chair", image: "/src/assets/products/Leviosa.png", price: "2.500.000", hasDiscount: false, discount: "", originalPrice: "",newProduct: false,},
-    { name: "Lolito", description: "Luxury big sofa", image: "/src/assets/products/Lolito.png", price: "7.000.000", hasDiscount: true, discount: "50%",originalPrice: "14.000.000",newProduct: false,},
-    { name: "Respira", description: "Outdoor bar table and stool", image: "/src/assets/products/Respira.png", price: "500.000", hasDiscount: false, discount: "", originalPrice: "", newProduct: true,},
-    { name: "Syltherine", description: "Stylish cafe chair", image: "/src/assets/products/Syltherine.png", price: "2.500.000", hasDiscount: true, discount: "30%", originalPrice: "3.500.000", newProduct: false,},
-    { name: "Leviosa", description: "Stylish cafe chair", image: "/src/assets/products/Leviosa.png", price: "2.500.000", hasDiscount: false, discount: "", originalPrice: "",newProduct: false,},
-    { name: "Lolito", description: "Luxury big sofa", image: "/src/assets/products/Lolito.png", price: "7.000.000", hasDiscount: true, discount: "50%",originalPrice: "14.000.000",newProduct: false,},
-    { name: "Respira", description: "Outdoor bar table and stool", image: "/src/assets/products/Respira.png", price: "500.000", hasDiscount: false, discount: "", originalPrice: "", newProduct: true,},
-  ]
+    { name: "Syltherine", description: "Stylish cafe chair", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Syltherine.png", price: "2.500.000", hasDiscount: true, discount: "30%", originalPrice: "3.500.000", newProduct: false,},
+    { name: "Leviosa", description: "Stylish cafe chair", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Leviosa.png", price: "2.500.000", hasDiscount: false, discount: "", originalPrice: "",newProduct: false,},
+    { name: "Lolito", description: "Luxury big sofa", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Lolito.png", price: "7.000.000", hasDiscount: true, discount: "50%",originalPrice: "14.000.000",newProduct: false,},
+    { name: "Respira", description: "Outdoor bar table and stool", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Respira.png", price: "500.000", hasDiscount: false, discount: "", originalPrice: "", newProduct: true,},
+    { name: "Syltherine", description: "Stylish cafe chair", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Syltherine.png", price: "2.500.000", hasDiscount: true, discount: "30%", originalPrice: "3.500.000", newProduct: false,},
+    { name: "Leviosa", description: "Stylish cafe chair", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Leviosa.png", price: "2.500.000", hasDiscount: false, discount: "", originalPrice: "",newProduct: false,},
+    { name: "Lolito", description: "Luxury big sofa", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Lolito.png", price: "7.000.000", hasDiscount: true, discount: "50%",originalPrice: "14.000.000",newProduct: false,},
+    { name: "Respira", description: "Outdoor bar table and stool", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Respira.png", price: "500.000", hasDiscount: false, discount: "", originalPrice: "", newProduct: true,},
+];
 
   return (
     <Container>

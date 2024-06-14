@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import FooterItem from '@types/footer-item';
+import FooterItem from '../types/footer-item';
 
 const Container = styled.div`
   display: flex;
@@ -85,10 +85,10 @@ const Item = ({ item }:{ item: FooterItem }) => {
 
 const Banner = () => {
   const items: FooterItem[] = [
-    { title: "High Quality", subtitle: "crafted from top materials", icon: "/src/assets/trophy.png" },
-    { title: "Warranty Protection", subtitle: "over 2 years", icon: "/src/assets/guarantee.png" },
-    { title: "Free Shipping", subtitle: "order over 150 $", icon: "/src/assets/shipping.png" },
-    { title: "24/7 Support", subtitle: "Dedicated support", icon: "/src/assets/customer-support.png" },
+    { title: "High Quality", subtitle: "crafted from top materials", icon: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/trophy.png" },
+    { title: "Warranty Protection", subtitle: "over 2 years", icon: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/guarantee.png" },
+    { title: "Free Shipping", subtitle: "order over 150 $", icon: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/shipping.png" },
+    { title: "24/7 Support", subtitle: "Dedicated support", icon: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/customer-support.png" },
   ];
   return (
     <Container>

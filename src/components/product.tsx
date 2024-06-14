@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import ProductType from '@types/product';
+import ProductType from '../types/product';
 
 const Container = styled.div`
   display: flex;

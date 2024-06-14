@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Link from '@types/link';
+import Link from '../types/link';
 
 const Items = styled.div<{ column?: boolean }>`
   display: flex;
