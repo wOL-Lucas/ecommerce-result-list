@@ -7,7 +7,7 @@ const Container = styled.div`
   justify-content: center;
   background-color: #FFFFFF;
   color: #000000;
-  padding-top: 20px;
+  padding: 120px 0;
   
   .next-prev {
     width: 98px;
@@ -15,6 +15,10 @@ const Container = styled.div`
   
   .hidden {
     display: none;
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 0;
   }
 `;
 
@@ -28,7 +32,12 @@ const Button = styled.button<{selected: boolean}>`
   width: 60px;
   height: 60px;
   
-
+  @media (max-width: 768px) {
+    width: 30px;
+    height: 30px;
+    
+    font-size: 12px;
+  }
 `;
 
 const Pager = ( { PagesCount }:{ PagesCount: number } ) => {
