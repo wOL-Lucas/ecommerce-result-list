@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import Logo from '@components/logo';
+import Links from '@components/links';
 
 const HeaderContainer = styled.header<{menuState: boolean}>`
   display: flex;
@@ -30,28 +31,6 @@ const Container = styled.div`
     flex-direction: column;
     align-items: start;
     padding: 0;
-  }
-}
-`
-
-const Items = styled.div`
-  display: flex;
-  align-items: center;
-  width: auto;
-  padding: 0;
-  margin: 0;
-  color: #000000;
-
-  a {
-    text-decoration: none;
-    color: #000000;
-    margin: 0 10px;
-    padding: 0;
-  }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: start;
   }
 }
 `
@@ -153,13 +132,7 @@ const Header = () => {
         <Hamburguer onClick={() => setMenuState(!menuState)} iconName={menuState ? "menu_open" : "menu"}/>
         </LogoWrapper>
         <ItemsWrapper menuState={menuState}>
-          <Items>
-            {pages.map((page, index) => (
-              <a key={index} href={page.url}>
-               {page.name}
-              </a>
-            ))}
-          </Items>
+          <Links pages={pages} />
           <Actions>
             {actions.map((action, index) => (
               <a key={index} href={action.url}><span className="material-symbols-outlined">{action.icon}</span></a>
