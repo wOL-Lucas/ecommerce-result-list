@@ -1,6 +1,8 @@
+import React from 'react';
 import styled from 'styled-components';
 import Banner from '../components/banner';
 import Links from '../components/links';
+import ValidateEmail from '../utils/validateEmail';
 
 const Container = styled.div`
   display: flex;
@@ -42,6 +44,16 @@ const ItemWrapper = styled.div`
     @media (max-width: 768px) {
       font-size: 16px;
     }
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
+  
+  .success {
+    color: green;
+    font-size: 12px;
   }
   
   .address {
@@ -153,6 +165,21 @@ const Footer = () => {
     { name: 'About', url: '#' },
     { name: 'Contact', url: '#' }
   ];
+  
+  const [email, setEmail] = React.useState('');
+  const [error, setError] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+  
+  const handleSubscribe = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (ValidateEmail(email)) {
+      setError(false);
+      setSuccess(true);
+
+    } else {
+      setError(true);
+    }
+  }
 
   return (
     <div>
@@ -178,9 +205,10 @@ const Footer = () => {
           <ItemWrapper>
             <p>Newsletter</p>
             <div className="subscribe">
-              <input type="text" placeholder="Enter your email"/>
-              <button>SUBSCRIBE</button>
+              <input type="text" value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Enter your email"/>
+              <button onClick={(e)=>{handleSubscribe(e)}}>SUBSCRIBE</button>
             </div>
+            {error ? <span className="error">Invalid email!</span> : success ? <span className="success">Nice! You are subscribed</span> : null}
           </ItemWrapper>
 
         </Wrapper>
