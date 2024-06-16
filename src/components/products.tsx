@@ -66,7 +66,7 @@ const Products = ({ sortBy, SetTotalProducts, show, offSet }: ProductsProps) => 
 
   if(offSet > OffSetList.length){
     offSet = OffSetList.length;
-  };
+  }
   
   console.log("offsetlist: ", OffSetList);
 

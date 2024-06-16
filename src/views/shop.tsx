@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Header from '../components/header';
 import Filters from '../components/filters';
 import Products from '../components/products';
@@ -14,7 +14,7 @@ const Shop = () => {
   const [totalPages, setTotalPages] = React.useState(1);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [filter, setFilter] = React.useState<SortBy | undefined>(undefined);
-  
+ 
   useEffect(() => {
     setShowMax(totalProducts);
     if (totalProducts > 0 && showMax > 0) {
