@@ -55,7 +55,6 @@ const Products = ({ sortBy, SetTotalProducts, show, offSet }: ProductsProps) => 
     { name: "Lolito", description: "Luxury big sofa", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Lolito.png", price: "7.000.000", hasDiscount: true, discount: "50%",originalPrice: "14.000.000",newProduct: false,},
     { name: "Respira", description: "Outdoor bar table and stool", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Respira.png", price: "500.000", hasDiscount: false, discount: "", originalPrice: "", newProduct: true,},
   ];
-  console.log(offSet);  
   if(show == 0){
     show = productList.length;
   }
@@ -67,8 +66,6 @@ const Products = ({ sortBy, SetTotalProducts, show, offSet }: ProductsProps) => 
   if(offSet > OffSetList.length){
     offSet = OffSetList.length;
   }
-  
-  console.log("offsetlist: ", OffSetList);
 
   return (
     <Container>
