@@ -112,7 +112,7 @@ const InfoWrapper = styled.div`
 const DiscountBadge = styled.p`
   position: absolute;
   top: 10px;
-  right: 25%;
+  right: 0;
   
   height: 55px;
   width: 55px;
@@ -139,7 +139,7 @@ const DiscountBadge = styled.p`
 const NewBadge = styled.p`
   position: absolute;
   top: 10px;
-  right: 25%;
+  right: 0;
   
   height: 55px;
   width: 55px;
