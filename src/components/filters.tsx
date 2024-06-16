@@ -38,6 +38,14 @@ const Container = styled.div<{showOptions: boolean}>`
   .border-top {
       border-top: 1px solid #D9D9D9;;
   }
+
+  .btn {
+    &:hover {
+      cursor: pointer;
+      border-bottom: 1px solid #D9D9D9;
+      color: #D9D9D9;
+    }
+  }
 `
 
 const Wrapper = styled.div`
@@ -124,7 +132,7 @@ const FilterButton = ({onClick}:{onClick: ()=>void}) => {
   const [showOptions, setShowOptions] = useState(false);
 
   return (
-    <Wrapper onClick={()=>{setShowOptions(!showOptions); onClick()}}>
+    <Wrapper onClick={()=>{setShowOptions(!showOptions); onClick()}} className="btn">
       <span className="material-symbols-outlined border">
         {showOptions ? 'expand_less' : 'tune'}
       </span>
