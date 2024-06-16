@@ -212,6 +212,18 @@ const InfoOverlay = styled.div`
     }
   }
 
+  @media (max-width: 768px) {
+    font-size: 12px;
+    a {
+      padding: 10px 0;
+      flex-direction: column;
+      font-size: 10px;
+      span {
+        font-size: 18px;
+      }
+    }
+  };
+
 `;
 
 const SeeDetails = styled.button`
@@ -222,6 +234,11 @@ const SeeDetails = styled.button`
 
   font-size: 16px;
   font-weight: 600;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    width: 120px;
+  };
 `;
 
 const Informations = ({ Product }: { Product: ProductType }) => {
