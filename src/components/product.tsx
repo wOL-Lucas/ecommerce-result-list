@@ -3,17 +3,22 @@ import styled from 'styled-components';
 import ProductType from '../types/product';
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   width: 20%;
-  min-width: 285px; 
+  min-width: 285px;
   margin: 10px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
- 
+
   @media (max-width: 768px) {
     width: 35%;
     min-width: 155px;
+  }
+
+  &:hover .info-overlay {
+    opacity: 1;
   }
 `;
 
@@ -168,23 +173,69 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
   width: 100%;
 `;
 
-const Informations = ( { Product }: { Product: ProductType } ) => { 
+const InfoOverlay = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+
+  a {
+    display: flex;
+    align-items: center;
+    color: #FFFFFF;
+    margin: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    
+    &:hover {
+      color: #B88E2F;
+    }
+    span {
+      font-size: 14px;
+      margin: 1px;
+    }
+  }
+
+`;
+
+const SeeDetails = styled.button`
+  color: #B88E2F;
+  background-color: #FFFFFF;
+  width: 200px;
+  border-radius: 0;
+
+  font-size: 16px;
+  font-weight: 600;
+`;
+
+const Informations = ({ Product }: { Product: ProductType }) => {
   return (
     <InfoWrapper>
       <div className="texts">
-          <h1>{Product.name}</h1>
-          <p>{Product.description}</p>
-          <div className="price-wrapper">
-            <p className="current-price">Rp {Product.price}</p>
-            {
-              Product.hasDiscount &&
-              <p className="original-price">Rp {Product.originalPrice }</p>
-            }
-          </div>
+        <h1>{Product.name}</h1>
+        <p>{Product.description}</p>
+        <div className="price-wrapper">
+          <p className="current-price">Rp {Product.price}</p>
+          {Product.hasDiscount && (
+            <p className="original-price">Rp {Product.originalPrice}</p>
+          )}
+        </div>
       </div>
     </InfoWrapper>
   );
@@ -193,21 +244,38 @@ const Informations = ( { Product }: { Product: ProductType } ) => {
 const Product = ({ Product }: { Product: ProductType }) => {
   return (
     <Container>
-        <Wrapper>
-        {
-          Product.hasDiscount && 
-          <DiscountBadge>-{Product.discount}</DiscountBadge>
-        }
-        {
-          Product.newProduct && 
-          <NewBadge>New</NewBadge>
-        }
-        <Image src={Product.image}/>
+      <Wrapper>
+        {Product.hasDiscount && <DiscountBadge>-{Product.discount}</DiscountBadge>}
+        {Product.newProduct && <NewBadge>New</NewBadge>}
+        <Image src={Product.image} />
       </Wrapper>
-      <Informations Product={Product}/>
+      <Informations Product={Product} />
+      <InfoOverlay className="info-overlay">
+        <SeeDetails>See Details</SeeDetails>
+        <Wrapper>
+          <a href="#">
+            <span className="material-symbols-outlined">
+              share
+            </span>
+            Share
+          </a>
+          <a href="#">
+            <span className="material-symbols-outlined">
+              sync_alt
+            </span>
+            Compare
+          </a>
+          <a href="#">
+            <span className="material-symbols-outlined">
+              favorite
+            </span>
+            Like
+          </a>
+        </Wrapper>
+      </InfoOverlay>
     </Container>
   );
 };
 
-
 export default Product;
+
