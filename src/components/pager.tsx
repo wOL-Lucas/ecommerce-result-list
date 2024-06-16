@@ -40,14 +40,18 @@ const Button = styled.button<{selected: boolean}>`
   }
 `;
 
-const Pager = ( { PagesCount }:{ PagesCount: number } ) => {
+const Pager = ( { PagesCount, CurrentPage, SetCurrentPage }:{ PagesCount: number, CurrentPage: number, SetCurrentPage: React.Dispatch<React.SetStateAction<number>> } ) => {
+ 
+  if(PagesCount < 1){
+    PagesCount = 1;
+  }
   return (
     <Container>
-      <Button className="next-prev hidden" selected={false}>Prev</Button>
+      <Button className={`next-prev ${CurrentPage === 1? 'hidden':''}`} selected={false} onClick={()=>{SetCurrentPage(CurrentPage - 1)}}>Prev</Button>
       {[...Array(PagesCount)].map((_, index) => (
-        <Button selected={index === 0} key={index}>{index + 1}</Button>
+        <Button selected={index + 1 === CurrentPage} key={index} onClick={()=>{SetCurrentPage(index + 1)}}>{index + 1}</Button>
       ))}
-      <Button className="next-prev" selected={false}>Next</Button>
+      <Button className={`next-prev ${CurrentPage === PagesCount ? 'hidden': ''}`} selected={false} onClick={()=>{SetCurrentPage(CurrentPage + 1)}}>Next</Button>
     </Container>
   );
 };

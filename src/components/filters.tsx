@@ -1,21 +1,42 @@
+import React from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
-const Container = styled.div`
+const Container = styled.div<{showOptions: boolean}>`
   display: flex;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   background-color: #F9F1E7;
   align-items: center;
   width: 100%;
-  height: 100px;
-  color: #0000000;
+  height: ${props => props.showOptions ? '260px' : '150px'};
+  color: #000000;
+
+  transition: height 0.05s ease-in-out;
 
   @media (max-width: 768px) {
-    height: 50px;
+    height: ${props => props.showOptions ? '160px' : '70px'};
   }
 
   .full {
-    width: 100%;  
+    width: 100%; 
+  }
+
+  .dropdown-item {
+    padding: 0 20px;
+
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .border-top {
+      border-top: 1px solid #D9D9D9;;
   }
 `
 
@@ -50,7 +71,7 @@ const Text = styled.p`
   font-family: 'Poppins', sans-serif;
 
   @media (max-width: 768px) {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     padding-left: 5px; 
   }
   
@@ -58,7 +79,7 @@ const Text = styled.p`
 `
 
 const ShowInput = styled.input`
-  margin: 5px;
+  margin: 15px;
   height: 40px;
   width: 40px;
   text-align: center;
@@ -80,11 +101,32 @@ const ShowInput = styled.input`
   }
 `;
 
-const FilterButton = () => {
+const OrderBySelect = styled.select`
+  margin: 15px;
+  height: 40px;
+  width: 200px;
+  text-align: center;
+  background-color: #FFFFFF;
+  color: #9F9F9F;
+  border: none;
+  font-size: 1rem;
+  font-width: 500,
+  overflow: hidden;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const FilterButton = ({onClick}:{onClick: ()=>void}) => {
+  const [showOptions, setShowOptions] = useState(false);
+
   return (
-    <Wrapper>
+    <Wrapper onClick={()=>{setShowOptions(!showOptions); onClick()}}>
       <span className="material-symbols-outlined border">
-        tune
+        {showOptions ? 'expand_less' : 'tune'}
       </span>
       Filter
     </Wrapper>
@@ -99,31 +141,82 @@ const FilterResultText = ({ min, max, total}: { min: number, max: number, total:
   )
 }
 
-const FilterComponent = () => {
+const FilterOptions = ({setFilter}:{setFilter: (filter:string)=>void} ) => {
   return (
-    <Wrapper className="border">
-      <FilterButton />
-      <FilterResultText min={1} max={10} total={100} />
+    <Wrapper className="dropdown-item border-top">
+      Order by:
+      <OrderBySelect onChange={(e)=>{setFilter(e.target.value)}}>
+        <option value="price">Lowest Price</option>
+        <option value="price-reverse">Highest Price</option>
+        <option value="name">A-Z</option>
+        <option value="name-reverse">Z-A</option>
+      </OrderBySelect>
     </Wrapper>
   )
 }
 
-const ShowFilter = ( { qnt }: { qnt: number } ) => {
+const FilterComponent = ( {onClick, min, max, total}: {onClick: ()=>void, min: number, max: number, total: number} ) => {
+  return (
+    <div>
+      <Wrapper>
+        <FilterButton onClick={onClick}/>
+        <FilterResultText min={min} max={max} total={total} />
+      </Wrapper>
+    </div>
+  )
+}
+
+const ShowFilter = ( { qnt, setShowMax }: { qnt: number, setShowMax: React.Dispatch<React.SetStateAction<number>> } ) => {
+  const [showQnt, setShowQnt] = useState(qnt);
+  const prevQntRef = useRef<number>();
+
+  useEffect(() => {
+    prevQntRef.current = qnt;
+  });
+
+  const prevQnt = prevQntRef.current;
+
+  useEffect(() => {
+    if (prevQnt !== qnt) {
+      setShowQnt(qnt);
+    }
+  }, [qnt, prevQnt]);
+
+  const setShowTotal = (total: number) => {
+    setShowQnt(total);
+    setShowMax(total);
+  };
   return (
     <Wrapper>
       Show 
-      <ShowInput type="number" value={qnt} />
+      <ShowInput type="number" value={showQnt} onChange={(e)=> setShowTotal(Number(e.target.value))}/>
     </Wrapper>
   ) 
 }
 
-const Filters = () => {
+interface FiltersProps {
+  min: number;
+  max: number;
+  total: number;
+  show: number;
+  setShowMax: React.Dispatch<React.SetStateAction<number>>;
+  setFilter: (filter: string)=>void;
+}
+
+const Filters = ({min, max, total, show, setShowMax, setFilter}: FiltersProps) => {
+  const [showOptions, setShowOptions] = useState(false);
+
   return (
-    <Container>
+    <Container showOptions={showOptions}>
       <Wrapper className="full">
-        <FilterComponent />
-        <ShowFilter qnt={10}/>
+        <FilterComponent onClick={()=>{setShowOptions(!showOptions)}} min={min} max={max} total={total} />
+        <ShowFilter qnt={show} setShowMax={setShowMax}/>
       </Wrapper>
+      <div className="full">
+        <Wrapper className={`dropdown-item ${showOptions? "" : "hidden"}`}>
+          <FilterOptions setFilter={setFilter}/>
+        </Wrapper>
+      </div>
     </Container>
   );
 }

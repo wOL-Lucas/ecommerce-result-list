@@ -1,6 +1,9 @@
+import React from 'react';
 import styled from 'styled-components';
 import ProductType from '../types/product';
 import Product from './product';
+import SortBy from '../types/sortBy';
+import { FilterArray, ChunkArray } from '../utils/filter';
 
 const Container = styled.div`
   display: flex;
@@ -18,14 +21,30 @@ const Container = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 50%;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: #FFFFFF;
+
+  @media (max-width: 768px) {
+    width: 95%;
+    justify-content: space-between;
+  }
+  
+  @media (max-width: 1024px) {
+    width: 95%;
+    justify-content: flex-start;
+  }
 `;
 
-const Products = () => {
+interface ProductsProps {
+  sortBy: SortBy | undefined;
+  SetTotalProducts: React.Dispatch<React.SetStateAction<number>>;
+  show: number;
+  offSet: number;
+}
 
+const Products = ({ sortBy, SetTotalProducts, show, offSet }: ProductsProps) => {
   const productList: ProductType[] = [
     { name: "Syltherine", description: "Stylish cafe chair", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Syltherine.png", price: "2.500.000", hasDiscount: true, discount: "30%", originalPrice: "3.500.000", newProduct: false,},
     { name: "Leviosa", description: "Stylish cafe chair", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Leviosa.png", price: "2.500.000", hasDiscount: false, discount: "", originalPrice: "",newProduct: false,},
@@ -35,14 +54,30 @@ const Products = () => {
     { name: "Leviosa", description: "Stylish cafe chair", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Leviosa.png", price: "2.500.000", hasDiscount: false, discount: "", originalPrice: "",newProduct: false,},
     { name: "Lolito", description: "Luxury big sofa", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Lolito.png", price: "7.000.000", hasDiscount: true, discount: "50%",originalPrice: "14.000.000",newProduct: false,},
     { name: "Respira", description: "Outdoor bar table and stool", image: "https://raw.githubusercontent.com/wOL-Lucas/ecommerce-result-list/main/src/assets/products/Respira.png", price: "500.000", hasDiscount: false, discount: "", originalPrice: "", newProduct: true,},
-];
+  ];
+  console.log(offSet);  
+  if(show == 0){
+    show = productList.length;
+  }
+  
+  const FilteredList = FilterArray({productList, sortBy});
+  const OffSetList = ChunkArray(FilteredList, show);
+  SetTotalProducts(FilteredList.length);
+
+  if(offSet > OffSetList.length){
+    offSet = OffSetList.length;
+  };
+  
+  console.log("offsetlist: ", OffSetList);
 
   return (
     <Container>
       <Wrapper>
-        {productList.map((product) => (
-          <Product Product={product}/>
-        ))}
+        {
+          OffSetList[offSet - 1].map((product: ProductType, index: number) => {
+            return <Product key={index} Product={product}/>
+          })
+        }
       </Wrapper>
     </Container>
   );

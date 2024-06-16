@@ -19,7 +19,7 @@ const HeaderContainer = styled.header<{menuState: boolean}>`
 
 const Container = styled.div`
   position: absolute;
-  width: 90%;
+  width: 50%;
   padding: 0 25px;
   display: flex;
   justify-content: space-between;
@@ -27,6 +27,7 @@ const Container = styled.div`
 
   @media (max-width: 768px) {
     height: auto;
+    width: 90%;
     flex-direction: column;
     align-items: start;
     padding: 0;
