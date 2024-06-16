@@ -13,6 +13,7 @@ const HeaderContainer = styled.header<{menuState: boolean}>`
 
   @media (max-width: 768px) {
     height: ${props => props.menuState ? '190px' : '50px'};
+    width: 100%;
     transition: height 0.05s ease-in-out;
   }
 `
