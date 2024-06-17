@@ -139,6 +139,11 @@ const DiscountBadge = styled.p`
     width: 35px;
     line-height: 35px;
   };
+
+  @media (max-width: 1903px) {
+    top: 10px;
+    right: 10%;
+  }
 `;
 
 const NewBadge = styled.p`
@@ -165,6 +170,11 @@ const NewBadge = styled.p`
     height: 35px;
     width: 35px;
     line-height: 35px;
+  };
+
+  @media (max-width: 1903px) {
+    top: 10px;
+    right: 10%;
   };
 `;
 

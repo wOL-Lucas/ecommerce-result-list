@@ -26,6 +26,11 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   background-color: #FFFFFF;
 
+  @media (max-width: 1903px){
+    width: 100%;
+    justify-content: center;
+  }
+
   @media (max-width: 768px) {
     width: 95%;
     justify-content: space-between !important;
