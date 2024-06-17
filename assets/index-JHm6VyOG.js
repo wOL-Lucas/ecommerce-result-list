@@ -141,7 +141,7 @@ Error generating stack: `+o.message+`
 
   @media (max-width: 768px) {
     padding-top: 15px;
-    width: 100%;
+    width: 100% !important;
     display: ${e=>e.menuState?"flex":"none"};
     justify-content: space-between;
   }
