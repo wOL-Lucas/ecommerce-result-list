@@ -470,6 +470,11 @@ Error generating stack: `+o.message+`
     width: 35px;
     line-height: 35px;
   };
+
+  @media (max-width: 1903px) {
+    top: 10px;
+    right: 10%;
+  }
 `,p0=$.p`
   position: absolute;
   top: 10px;
@@ -494,6 +499,11 @@ Error generating stack: `+o.message+`
     height: 35px;
     width: 35px;
     line-height: 35px;
+  };
+
+  @media (max-width: 1903px) {
+    top: 10px;
+    right: 10%;
   };
 `,xa=$.div`
   position: relative;
@@ -580,6 +590,11 @@ Error generating stack: `+o.message+`
   align-items: center;
   justify-content: flex-start;
   background-color: #FFFFFF;
+
+  @media (max-width: 1903px){
+    width: 100%;
+    justify-content: center;
+  }
 
   @media (max-width: 768px) {
     width: 95%;
