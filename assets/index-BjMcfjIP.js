@@ -149,6 +149,10 @@ Error generating stack: `+o.message+`
   a {
     font-size: 20px;
   }
+
+  @media( max-width: 1903px) {
+    width: 70%;
+  }
 }`,Ym=$.div`
   color: #000000;
   display: none;
