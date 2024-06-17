@@ -77,6 +77,10 @@ const ItemsWrapper = styled.div<{ menuState: boolean }>`
   a {
     font-size: 20px;
   }
+
+  @media( max-width: 1903px) {
+    width: 70%;
+  }
 }`
 
 const HamburguerContainer = styled.div`
