@@ -69,7 +69,7 @@ const ItemsWrapper = styled.div<{ menuState: boolean }>`
 
   @media (max-width: 768px) {
     padding-top: 15px;
-    width: 100%;
+    width: 100% !important;
     display: ${props => props.menuState ? 'flex' : 'none'};
     justify-content: space-between;
   }
